@@ -10,14 +10,18 @@ import VueRouter from 'vue-router'
 
 import EmployeeIndexPage from 'EmployeeIndexPage.vue'
 import EmployeeDetailPage from 'EmployeeDetailPage.vue'
+import EmployeeNewPage from 'EmployeeNewPage.vue'
 
 const router = new VueRouter({
   routes: [
     { path: '/',
       component: EmployeeIndexPage  },
-    { path: '/employees/:id(\\d+)',
-      name: 'EmployeeDetailPage',  // ルートに名前を付けている ref. https://router.vuejs.org/ja/guide/essentials/named-routes.html#%E5%90%8D%E5%89%8D%E4%BB%98%E3%81%8D%E3%83%AB%E3%83%BC%E3%83%88
-      component: EmployeeDetailPage  }
+    { path: '/employees/:id(\\d+)',  // :idは数値のみに制限する
+      name: 'EmployeeDetailPage',
+      component: EmployeeDetailPage },
+    { path: '/employees/new',
+      name: 'EmployeeNewPage',
+      component: EmployeeNewPage    }
   ]
 })
 
