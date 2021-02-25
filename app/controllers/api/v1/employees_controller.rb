@@ -15,8 +15,15 @@ class Api::V1::EmployeesController < ApiController
     render json: @employee
   end
 
-  private
+  def update
+    if @employee.update_attributes(employee_params)
+      head :no_content
+    else
+      render json: { errors: @employee.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
 
+  private
     def set_employee
       @employee = Employee.find(params[:id])
     end
