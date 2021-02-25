@@ -1,5 +1,5 @@
 class Api::V1::EmployeesController < ApiController
-  before_action :set_employee, only: [:show]
+  before_action :set_employee, only: [:show, :update, :destroy]
 
   # ActiveRecordのレコードが見つからなければ404 not foundを応答する
   rescue_from ActiveRecord::RecordNotFound do |exception|
@@ -21,6 +21,11 @@ class Api::V1::EmployeesController < ApiController
     else
       render json: { errors: @employee.errors.full_messages }, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @employee.destroy!
+    head :no_content
   end
 
   private
